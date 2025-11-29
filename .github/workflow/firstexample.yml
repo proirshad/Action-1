@@ -10,6 +10,8 @@ jobs:
         run: ls -lrth
       - name: server info
         run: cat /etc/os-release 
+      - name: check the memory 
+        run: free -h 
    
 
       
