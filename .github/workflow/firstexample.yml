@@ -1,0 +1,15 @@
+name: my-first-workflow
+on: push 
+jobs:
+   first_jobs:
+      runs-on: ubuntu-latest
+      steps:
+      - name: welcome message
+        run: "echo my first github-action jobs"
+      - name: list file
+        run: ls -lrth
+      - name: server info
+        run: cat /etc/os-release 
+   
+
+      
