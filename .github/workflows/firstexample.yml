@@ -4,6 +4,10 @@ jobs:
    first_jobs:
       runs-on: ubuntu-latest
       steps:
+      - name: checkout-repo
+        uses: actions/checkout@v4
+      - name: install node
+        uses: actions/setup-node@v4
       - name: welcome message
         run: "echo my first github-action jobs"
       - name: list file
