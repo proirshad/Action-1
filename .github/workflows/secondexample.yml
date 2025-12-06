@@ -4,8 +4,10 @@ jobs:
     second_job: 
       runs-on: ubuntu-latest
       steps:
-         - name: Excute the ascii script file
-           run: |
+        - name: Checkout repository
+          uses: actions/checkout@v4
+        - name: Excute the ascii script file
+          run: |
             chmod +x ascii.sh
             ./ascii.sh
 
