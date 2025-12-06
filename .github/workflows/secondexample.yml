@@ -13,4 +13,11 @@ jobs:
             chmod +x .github/workflows/ascii.sh
             ./.github/workflows/ascii.sh
 
-    
+    test_job:
+      needs: second_job
+      runs-on: ubuntu-latest
+      steps:
+        - name: sleep mode 
+          run: sleep 10 
+        - name: text file exist 
+          run: grep -i "dragon" dragon.txt
