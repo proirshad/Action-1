@@ -8,7 +8,7 @@ jobs:
           uses: actions/checkout@v4
         - name: Excute the ascii script file
           run: |
-            chmod +x ascii.sh
-            ./ascii.sh
+            chmod +x .github/workflow/ascii.sh
+            ./.github/workflow/ascii.sh
 
     
