@@ -12,6 +12,11 @@ jobs:
           run: |
             chmod +x .github/workflows/ascii.sh
             ./.github/workflows/ascii.sh
+        - name: Upload dragon.txt to share with next job
+          uses: actions/upload-artifact@v4
+          with:
+           name: dragon-file
+           path: dragon.txt
 
     test_job:
       needs: second_job
@@ -19,5 +24,10 @@ jobs:
       steps:
         - name: sleep mode 
           run: sleep 10 
+        - name: Upload dragon.txt to share with next job
+          uses: actions/download-artifact@v4
+          with:
+           name: dragon-file
+           path: dragon.txt
         - name: text file exist 
           run: grep -i "dragon" dragon.txt
