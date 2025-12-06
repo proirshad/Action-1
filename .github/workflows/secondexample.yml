@@ -5,5 +5,8 @@ jobs:
       runs-on: ubuntu-latest
       steps:
          - name: Excute the ascii script file
-           run: ./ascii.sh
+           run: |
+            chmod +x ascii.sh
+            ./ascii.sh
+
     
