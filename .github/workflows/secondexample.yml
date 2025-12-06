@@ -6,9 +6,11 @@ jobs:
       steps:
         - name: Checkout repository
           uses: actions/checkout@v4
+        - name: Debug list repo files
+          run: ls -R 
         - name: Excute the ascii script file
           run: |
-            chmod +x .github/workflow/ascii.sh
-            ./.github/workflow/ascii.sh
+            chmod +x .github/workflows/ascii.sh
+            ./.github/workflows/ascii.sh
 
     
