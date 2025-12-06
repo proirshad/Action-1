@@ -9,13 +9,12 @@ jobs:
       - name: install node
         uses: actions/setup-node@v4
       - name: welcome message
-        run: "echo my first github-action jobs"
-      - name: list file
-        run: ls -lrth
-      - name: server info
-        run: cat /etc/os-release 
-      - name: check the memory 
-        run: free -h 
-   
+        run: | 
+           echo "my first github-action jobs"
+           ls -lrth
+           cat /etc/os-release
+      - name: Generate ASCII artwork
+        run: cowsay -f dragon "Run for cover, i am a dragon....RAWR" >> dragon.txt
+    
 
       
