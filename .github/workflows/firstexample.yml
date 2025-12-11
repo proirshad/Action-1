@@ -15,6 +15,16 @@ jobs:
            cat /etc/os-release
       - name: Generate ASCII artwork
         run: cowsay -f dragon "Run for cover, i am a dragon....RAWR" >> dragon.txt
+   test_jobs:
+     needs: first_jobs
+     runs-on: ubuntu-latest
+     steps:
+      - name: sleep timeout 
+        run: sleep 30
+      - name: check the dragon file 
+        run: grep -i "dragon" dragon.txt 
+      
+
     
 
       
