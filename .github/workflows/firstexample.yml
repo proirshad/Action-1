@@ -12,7 +12,6 @@ jobs:
         run: | 
            sudo apt-get install cowsay -y 
            echo "my first github-action jobs"
-           ls -lrth
            cat /etc/os-release
       - name: Generate ASCII artwork
         run: cowsay -f dragon "Run for cover, i am a dragon....RAWR" >> dragon.txt
