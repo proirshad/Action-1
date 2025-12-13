@@ -17,6 +17,9 @@ jobs:
         run: cowsay -f dragon "Run for cover, i am a dragon....RAWR" >> dragon.txt
    test_jobs:
      needs: first_jobs
+     concurrency:
+       group: production-deployment
+       cancel-in-progress: true
      runs-on: ubuntu-latest
      steps:
       - name: sleep timeout 
