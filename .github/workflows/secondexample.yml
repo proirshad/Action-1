@@ -1,5 +1,5 @@
 name: Ascii workflow 
-on: push
+on: workflow_dispatch
 jobs:
     second_job: 
       runs-on: ubuntu-latest
