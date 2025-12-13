@@ -10,6 +10,7 @@ jobs:
         uses: actions/setup-node@v4
       - name: welcome message
         run: | 
+           sudo apt-get install cowsay -y 
            echo "my first github-action jobs"
            ls -lrth
            cat /etc/os-release
