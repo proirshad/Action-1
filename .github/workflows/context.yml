@@ -2,12 +2,22 @@ name: context-workflow
 on: push
 jobs:
     dump_context_to_log:
-     runs-on: ubuntu-latest
+     strategy:
+        matrix:
+         os: [ubunut-latest, windows-latest, ubuntu-20.04]
+         images: [hello-world, alpine]
+         
+     runs-on: ${{ matrix.os }}
      steps: 
        - name: Dump github Action
          env: 
             GITHUB_CONTEXT: ${{ toJson(github) }}
          run: echo "$GITHUB_CONTEXT"
+       - name: docker login details.
+         run: docker info         
+       - name: run image on ${{ matrix.images }}
+         run: docker run ${{ matrix.os }}
+
 
 
 
