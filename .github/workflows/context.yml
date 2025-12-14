@@ -1,0 +1,16 @@
+name: context-workflow
+on: push
+jobs:
+    dump_context_to_log:
+     runs-on: ubuntu-latest
+     steps: 
+       - name: Dump github Action
+         env: 
+            GITHUB_CONTEXT: ${{ toJson(github) }}
+         run: echo "$GITHUB_CONTEXT"
+
+
+
+
+
+
