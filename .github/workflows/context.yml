@@ -3,10 +3,16 @@ on: push
 jobs:
     dump_context_to_log:
      strategy:
+        max-parallel: 2
         matrix:
          os: [ubunut-latest, windows-latest, ubuntu-20.04]
          images: [hello-world, alpine]
-         
+         exclude:
+            - images: alpine
+              os: windows-latest
+         include:
+            - images: amd/alpine
+              os: ubuntu-22.04 
      runs-on: ${{ matrix.os }}
      steps: 
        - name: Dump github Action
