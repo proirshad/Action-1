@@ -4,7 +4,19 @@ jobs:
     second_job: 
       concurrency:
         group: production-deployment
-      runs-on: ubuntu-latest
+      strategy:
+        fail-fast: true
+        max-parallel: 2
+        matrix:
+          os: [ubunutu-latest, ubuntu-20.04, windows-latest]
+          images: [hello-world, alpine]
+          exclude:
+            - images: alpine
+              os: windows-latest
+          include:
+            - images: amd/alpine
+              os: ubuntu-20.04 
+      runs-on: ${{ matrix.os }}
       steps:
         - name: Checkout repository
           uses: actions/checkout@v4
