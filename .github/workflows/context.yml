@@ -2,18 +2,18 @@ name: context-workflow
 on: push
 jobs:
     dump_context_to_log:
+     runs-on: ${{ matrix.os }}
      strategy:
         max-parallel: 2
         matrix:
-         os: [ubunut-latest, windows-latest, ubuntu-20.04]
+         os: [ubuntu-latest, windows-latest]
          images: [hello-world, alpine]
          exclude:
             - images: alpine
               os: windows-latest
          include:
-            - images: amd/alpine
-              os: ubuntu-22.04 
-     runs-on: ${{ matrix.os }}
+            - images: amd64/alpine
+              os: ubuntu-20.04 
      steps: 
        - name: Dump github Action
          env: 
@@ -21,8 +21,8 @@ jobs:
          run: echo "$GITHUB_CONTEXT"
        - name: docker login details.
          run: docker info         
-       - name: run image on ${{ matrix.images }}
-         run: docker run ${{ matrix.os }}
+       - name: run image on ${{ matrix.os }}
+         run: docker run ${{ matrix.images }}
 
 
 
