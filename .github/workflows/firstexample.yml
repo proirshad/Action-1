@@ -1,32 +1,39 @@
-name: my-first-workflow
-on: workflow_dispatch
+name: unit-test-pipeline
+on:
+  push:
+     branches:
+      - feature/*
+      - main
 jobs:
-   first_jobs:
-      runs-on: ubuntu-latest
-      steps:
-      - name: checkout-repo
-        uses: actions/checkout@v4
-      - name: install node
-        uses: actions/setup-node@v4
-      - name: welcome message
-        run: | 
-           sudo apt-get install cowsay -y 
-           echo "my first github-action jobs"
-           cat /etc/os-release
-      - name: Generate ASCII artwork
-        run: cowsay -f dragon "Run for cover, i am a dragon....RAWR" >> dragon.txt
-   test_jobs:
-     needs: first_jobs
-     concurrency:
-       group: production-deployment
-       cancel-in-progress: true
-     runs-on: ubuntu-latest
-     steps:
-      - name: sleep timeout 
-        run: sleep 30
-      - name: check the dragon file 
-        run: grep -i "dragon" dragon.txt 
+  unit-tests:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-18.04]
+        nodejs_version: [18,20]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v6
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.nodejs_version }}
       
+    - name: my first cicd command
+      run: echo "hello world!"
+
+    - name: cache dependency 
+      uses: actions/checkout@v3  
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
+
+    - name: npm install dependency 
+      run: npm install 
+
+
+    
 
     
 
